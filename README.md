@@ -35,3 +35,40 @@ Owner:
 
 ## Step 2: Design database schema
 
+(insert image of schema)
+
+## Step 3: Create migrations, models, associations
+
+Auditorium:
+
+- has many showings
+- has many movies
+
+User:
+
+- has many orders
+- has many showings
+
+Order:
+
+- belongs to customer
+- belongs to showing
+
+Showing:
+
+- belongs to movie
+- belongs to auditorium
+- has many orders
+- has many customers
+
+Movie:
+
+- has many showings
+- has many auditoriums
+
+## Step 4: Write validations
+
+- credit card number must be 16 digits long, only integers allowed
+- must have name
+- must have valid email
+- expy must be after the current date
