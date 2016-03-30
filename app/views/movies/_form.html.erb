@@ -1,0 +1,16 @@
+<%= form_for @movie do |f| %>
+
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+
+  <%= f.label :title  %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.submit %>
+<% end %>
