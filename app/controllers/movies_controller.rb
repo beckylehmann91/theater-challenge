@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    if @movie.update(post_params)
+    if @movie.update(movie_params)
       redirect_to @movie
     else
       @errors = @movie.errors.full_messages
