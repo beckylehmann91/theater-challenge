@@ -72,3 +72,5 @@ Movie:
 - must have name
 - must have valid email
 - expy must be after the current date
+
+## Step 5: Set up routes
