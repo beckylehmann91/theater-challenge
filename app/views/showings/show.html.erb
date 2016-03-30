@@ -1,1 +1,7 @@
-show.html.erb
+<h1>@showing.movie.title</h1>
+<p>@showing.date, @showing.time </p>
+
+<% if current_user %>
+  <%= link_to 'Edit', edit_showing_path(@showing) %>
+<%  end %>
+<%= link_to 'Back', movies_path %>

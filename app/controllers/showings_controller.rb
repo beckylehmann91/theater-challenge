@@ -30,7 +30,9 @@ class ShowingsController < ApplicationController
 
   def update
     @showing = Showing.find(params[:id])
-    if @showing.update(showing_params)
+    movie = Movie.find_by(title: params[:movie])
+    auditorium = Auditorium.find_by(name: params[:auditorium])
+    if @showing.update((showing_params).merge({ movie: movie, auditorium: auditorium }))
       redirect_to @showing
     else
       @errors = @showing.errors.full_messages
@@ -48,7 +50,7 @@ class ShowingsController < ApplicationController
   private
 
   def showing_params
-    params.require(:showing).permit(:movie_id, :auditorium_id, :date, :time)
+    params.require(:showing).permit(:date, :time)
   end
 
 end
