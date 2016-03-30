@@ -1,0 +1,1 @@
+auditoria_controller.rb

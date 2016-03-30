@@ -19,7 +19,7 @@ Customer:
 
 Owner:
 
-- Owner can add auditoriums
+- Owner can add auditoria
 - Owner can add seating capacities
 - Owner can set which movie is showing in which auditorium
 - Owner can view order information from the database
@@ -28,7 +28,7 @@ Owner:
 
 ## Notable requirements
 
-- Auditoriums have limited seating capacities
+- Auditoria have limited seating capacities
 - App must be mobile-friendly
 - Any CSS framework may be used
 - Deploy to Heroku
