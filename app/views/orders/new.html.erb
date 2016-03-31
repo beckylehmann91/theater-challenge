@@ -1,1 +1,5 @@
-new.html.erb
+<h1>Place an order for the <%= @showing.time.strftime("%I:%M %p") %> showing of <%= @showing.movie.title %> on <%= @showing.date.strftime("%B %d") %> </h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', showings_path %>

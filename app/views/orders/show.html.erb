@@ -1,1 +1,12 @@
-show.html.erb
+<% if !current_user %>
+<h2>Thank you! Your order for <%= @order.movie.title %> has been successfully placed. We have sent a confirmation to <%= @order.email %></h2>
+<% end %>
+
+<h3>Order details</h3>
+<p>Movie: <%= @order.movie.title %></p>
+<p>Date: <%= @order.showing.date.strftime("%B %d") %></p>
+<p>Time: <%= @order.showing.time.strftime("%I:%M %p") %></p>
+<p>Name: <%= @order.name %></p>
+<p>Email: <%= @order.email %></p>
+<p>Credit card: ************ <%= @order.credit_card[-4..-1] %></p>
+<p>Card expiration date: <%= @order.card_expy_date.strftime("%B %d, %Y") %></p>

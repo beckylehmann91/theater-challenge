@@ -1,19 +1,26 @@
 class OrdersController < ApplicationController
 
-  before_action :require_login, except: [:new, :create]
+  # before_action :require_login, except: [:new, :create]
 
   def index
     @orders = Orders.all
   end
 
+  def show
+    @showing = Showing.find(params[:showing_id])
+    @order = Order.find(params[:id])
+  end
+
   def new
     @order = Order.new
+    @showing = Showing.find(params[:showing_id])
   end
 
   def create
-    @order = Order.create(order_params)
+    @showing = Showing.find(params[:showing_id])
+    @order = @showing.orders.create(order_params)
     if @order.save
-      redirect_to @order
+      redirect_to [@showing, @order]
     else
       @errors = @order.errors.full_messages
       render 'new'
