@@ -1,1 +1,8 @@
-show.html.erb
+<h1>Auditorium <%= @auditorium.name %></h1>
+
+<h2>Movies playing:</h2>
+<% @movies.each do |movie| %>
+  <%= link_to (movie) do %>
+    <p><%= movie.title %></p>
+  <% end %>
+<% end %>

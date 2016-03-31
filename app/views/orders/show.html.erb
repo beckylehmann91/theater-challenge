@@ -1,4 +1,4 @@
-<% if !current_user %>
+<% if !admin_user %>
 <h2>Thank you! Your order for <%= @order.movie.title %> has been successfully placed. We have sent a confirmation to <%= @order.email %></h2>
 <% end %>
 
@@ -10,3 +10,5 @@
 <p>Email: <%= @order.email %></p>
 <p>Credit card: ************ <%= @order.credit_card[-4..-1] %></p>
 <p>Card expiration date: <%= @order.card_expy_date.strftime("%B %d, %Y") %></p>
+
+<%= link_to 'Back to movies', root_path %>

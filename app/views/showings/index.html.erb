@@ -1,0 +1,9 @@
+<p>Orders</p>
+
+<% @showings.each do |showing| %>
+  <% showing.orders.each do |order| %>
+    <%= link_to showing_order_path(showing, order) do %>
+      <p>Order #<%= order.id%></p>
+    <% end %>
+  <% end %>
+<% end %>

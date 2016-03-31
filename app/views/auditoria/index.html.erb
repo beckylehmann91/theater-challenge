@@ -1,1 +1,12 @@
-index.html.erb
+<% @auditoria.each do |auditorium| %>
+  <%= link_to (auditorium) do %>
+    <p>Auditorium <%= auditorium.name %></p>
+  <% end %>
+  <%= link_to 'Edit', edit_auditorium_path(auditorium) %>
+  <%= link_to 'Delete', auditorium, method: :delete, data: {confirm: 'Are you sure you want to delete this auditorium?'} %>
+<% end %>
+<br>
+<br>
+<br>
+
+<%= link_to 'Add Auditorium', new_auditorium_path %>
