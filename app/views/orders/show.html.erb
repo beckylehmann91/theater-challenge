@@ -1,4 +1,4 @@
-<% if !current_user %>
+<% if !admin_user %>
 <h2>Thank you! Your order for <%= @order.movie.title %> has been successfully placed. We have sent a confirmation to <%= @order.email %></h2>
 <% end %>
 

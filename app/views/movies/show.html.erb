@@ -4,13 +4,13 @@
   <%= link_to (showing) do %>
     <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
   <% end %>
-  <% if current_user %>
+  <% if admin_user %>
     <%= link_to 'Edit', edit_showing_path(showing) %>
     <%= link_to 'Delete', showing, method: :delete, data: {confirm: 'Are you sure you want to delete this showing?'} %>
   <% end %>
 <% end %>
 
-<% if current_user %>
+<% if admin_user %>
   <p>Options for showing</p>
   <%= link_to 'Add Showing', new_showing_path([@movie, @showing]) %>
 

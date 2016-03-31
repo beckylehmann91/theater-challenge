@@ -6,7 +6,7 @@
     <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
   <% end %>
 
-  <% if current_user %>
+  <% if admin_user %>
     <p>Options for movie</p>
     <%= link_to 'Edit Movie', edit_movie_path(movie) %>
     <%= link_to 'Delete Movie', movie, method: :delete, data: {confirm: 'Are you sure you want to delete this movie?'} %>
@@ -16,6 +16,6 @@
 <br>
 <br>
 
-<% if current_user %>
+<% if admin_user %>
   <%= link_to 'Add Movie', new_movie_path %>
 <% end %>

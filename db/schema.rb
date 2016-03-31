@@ -16,6 +16,11 @@ ActiveRecord::Schema.define(version: 20160329150516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "admin_users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+  end
+
   create_table "auditoria", force: :cascade do |t|
     t.string  "name"
     t.integer "capacity"
@@ -38,10 +43,6 @@ ActiveRecord::Schema.define(version: 20160329150516) do
     t.integer "auditorium_id"
     t.date    "date"
     t.time    "time"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
   end
 
 end
