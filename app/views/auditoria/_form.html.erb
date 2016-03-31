@@ -1,14 +1,12 @@
-<%= form_for @auditorium do |f| %>
-
-  <% if @errors %>
+<% if @errors %>
   <ul>
     <% @errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
-  <% end %>
+<% end %>
 
-
+<%= form_for @auditorium do |f| %>
   <%= f.label :name  %>
   <%= f.text_field :name %>
   <br>

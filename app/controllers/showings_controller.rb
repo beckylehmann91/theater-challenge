@@ -1,7 +1,5 @@
 class ShowingsController < ApplicationController
 
-  # before_action :require_login, except: [:show]
-
   def index
     @showings = Showing.all
   end
@@ -23,6 +21,8 @@ class ShowingsController < ApplicationController
   def create
     auditorium = Auditorium.find_by(name: params[:showing][:auditorium])
     movie = Movie.find_by(title: params[:showing][:movie])
+    # date = self.parsed_date_time(params[:showing][:date])
+    # time = self.parsed_date_time(params[:showing][:time])
     @showing = Showing.create((showing_params).merge({ movie: movie, auditorium: auditorium }))
     if @showing.save
       puts "****************"
@@ -57,7 +57,7 @@ class ShowingsController < ApplicationController
   private
 
   def showing_params
-    params.require(:showing).permit(:date, :time)
+    params.require(:showing).permit(:auditorium, :movie, :date, :time)
   end
 
 end

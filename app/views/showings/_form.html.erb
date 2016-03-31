@@ -1,13 +1,12 @@
-<%= form_for @showing do |f| %>
-
-  <% if @errors %>
+<% if @errors %>
   <ul>
     <% @errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
-  <% end %>
+<% end %>
 
+<%= form_for @showing do |f| %>
   <%= f.label :movie  %>
   <%= f.text_field :movie %>
   <br>
@@ -15,10 +14,10 @@
   <%= f.text_field :auditorium %>
   <br>
   <%= f.label :date  %>
-  <%= f.text_field :date %>
+  <%= f.text_field :date, placeholder: "YYYY-MM-DD" %>
   <br>
   <%= f.label :time  %>
-  <%= f.text_field :time %>
+  <%= f.text_field :time, placeholder: "HH:MM:SS" %>
   <br>
   <%= f.submit %>
 <% end %>
