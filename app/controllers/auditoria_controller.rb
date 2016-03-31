@@ -1,13 +1,14 @@
 class AuditoriaController < ApplicationController
 
-  before_action :require_login, except: [:index, :show]
+  # before_action :require_login, except: [:index, :show]
 
   def index
-    @auditoria = Auditoria.all
+    @auditoria = Auditorium.all
   end
 
   def show
     @auditorium = Auditorium.find(params[:id])
+    @movies = @auditorium.movies
   end
 
   def new

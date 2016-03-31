@@ -6254,3 +6254,2410 @@ ORDER BY c.conname
   [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users"[0m
   [1m[35mAdminUser Load (0.9ms)[0m  SELECT  "admin_users".* FROM "admin_users"  ORDER BY "admin_users"."id" ASC LIMIT 1
   [1m[36mOrder Load (1.0ms)[0m  [1mSELECT "orders".* FROM "orders"[0m
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (8.6ms)[0m  INSERT INTO "admin_users" ("username", "password_digest") VALUES ($1, $2) RETURNING "id"  [["username", "becky"], ["password_digest", "becky"]]
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mAdminUser Load (1.0ms)[0m  SELECT "admin_users".* FROM "admin_users"
+  [1m[36m (5.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (2.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAdminUsers (20160329150007)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.7ms)[0m  [1mCREATE TABLE "admin_users" ("id" serial primary key, "username" character varying, "password_digest" character varying) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150007"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMovies (20160329150028)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (10.6ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150028"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAuditoria (20160329150047)
+  [1m[35m (16.9ms)[0m  BEGIN
+  [1m[36m (19.9ms)[0m  [1mCREATE TABLE "auditoria" ("id" serial primary key, "name" character varying, "capacity" integer) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150047"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateShowings (20160329150358)
+  [1m[35m (15.7ms)[0m  BEGIN
+  [1m[36m (18.2ms)[0m  [1mCREATE TABLE "showings" ("id" serial primary key, "movie_id" integer, "auditorium_id" integer, "date" date, "time" time) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150358"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOrders (20160329150516)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.1ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "showing_id" integer, "name" character varying, "email" character varying, "credit_card" character varying, "card_expy_date" date) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150516"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admin_users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'auditoria'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'movies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'showings'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Room"]]
+  [1m[35m (15.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"  [["title", "Zoolander 2"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Star Wars"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "A"], ["capacity", 40]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"[0m  [["name", "B"], ["capacity", 45]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "C"], ["capacity", 60]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["auditorium_id", 1], ["date", "2016-04-01"], ["time", "2000-01-01 12:00:00.000000"]]
+  [1m[35m (15.9ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"  [["movie_id", 2], ["auditorium_id", 2], ["date", "2016-04-03"], ["time", "2000-01-01 15:00:00.000000"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 3], ["auditorium_id", 3], ["date", "2016-04-02"], ["time", "2000-01-01 16:00:00.000000"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "orders" ("showing_id", "name", "email", "credit_card", "card_expy_date") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["showing_id", 1], ["name", "Becky Lehmann"], ["email", "becky@gmail.com"], ["credit_card", "1234567887654321"], ["card_expy_date", "2017-04-17"]]
+  [1m[36m (15.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "admin_users" ("username", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["username", "becky"], ["password_digest", "$2a$10$ESOJCvW8eNABqBcHgZPIzucbzXklSPcBwKn75MrdU0CxgKxCz/7mi"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Room"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"  [["title", "Zoolander 2"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Star Wars"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "A"], ["capacity", 40]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"[0m  [["name", "B"], ["capacity", 45]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "C"], ["capacity", 60]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["auditorium_id", 1], ["date", "2016-04-01"], ["time", "2000-01-01 12:00:00.000000"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"  [["movie_id", 2], ["auditorium_id", 2], ["date", "2016-04-03"], ["time", "2000-01-01 15:00:00.000000"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 3], ["auditorium_id", 3], ["date", "2016-04-02"], ["time", "2000-01-01 16:00:00.000000"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "orders" ("showing_id", "name", "email", "credit_card", "card_expy_date") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["showing_id", 1], ["name", "Becky Lehmann"], ["email", "becky@gmail.com"], ["credit_card", "1234567887654321"], ["card_expy_date", "2017-04-17"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "admin_users" ("username", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["username", "sashafierce"], ["password_digest", "$2a$10$ATf8ea/aYHtG/F05tjHra.ZYKMETlBMVz53AJj6d7FnxvofU.K6QG"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT "admin_users".* FROM "admin_users"[0m
+  [1m[36m (21.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (115.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAdminUsers (20160329150007)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (164.8ms)[0m  [1mCREATE TABLE "admin_users" ("id" serial primary key, "username" character varying, "password_digest" character varying) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150007"]]
+  [1m[36m (50.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMovies (20160329150028)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (107.6ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150028"]]
+  [1m[36m (38.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAuditoria (20160329150047)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (315.5ms)[0m  [1mCREATE TABLE "auditoria" ("id" serial primary key, "name" character varying, "capacity" integer) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150047"]]
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateShowings (20160329150358)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (38.0ms)[0m  [1mCREATE TABLE "showings" ("id" serial primary key, "movie_id" integer, "auditorium_id" integer, "date" date, "time" time) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150358"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOrders (20160329150516)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "showing_id" integer, "name" character varying, "email" character varying, "credit_card" character varying, "card_expy_date" date) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160329150516"]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admin_users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'auditoria'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'movies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'showings'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Room"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"  [["title", "Zoolander 2"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "movies" ("title") VALUES ($1) RETURNING "id"[0m  [["title", "Star Wars"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "A"], ["capacity", 40]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"[0m  [["name", "B"], ["capacity", 45]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "C"], ["capacity", 60]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["auditorium_id", 1], ["date", "2016-04-01"], ["time", "2000-01-01 12:00:00.000000"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"  [["movie_id", 2], ["auditorium_id", 2], ["date", "2016-04-03"], ["time", "2000-01-01 15:00:00.000000"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "showings" ("movie_id", "auditorium_id", "date", "time") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 3], ["auditorium_id", 3], ["date", "2016-04-02"], ["time", "2000-01-01 16:00:00.000000"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "orders" ("showing_id", "name", "email", "credit_card", "card_expy_date") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["showing_id", 1], ["name", "Becky Lehmann"], ["email", "becky@gmail.com"], ["credit_card", "1234567887654321"], ["card_expy_date", "2017-04-17"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "admin_users" ("username", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["username", "sashafierce"], ["password_digest", "$2a$10$8xL18wxA6lZo56yNSwCpzOcTGFG3ZeS.a.Ly/U7p7xPT8sYAXrlFy"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT "admin_users".* FROM "admin_users"[0m
+  [1m[35mOrder Load (0.7ms)[0m  SELECT "orders".* FROM "orders"
+  [1m[36mShowing Load (0.7ms)[0m  [1mSELECT "showings".* FROM "showings"[0m
+  [1m[35mAuditorium Load (1.1ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  [1m[36mMovie Load (1.8ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+
+
+Started GET "/movies" for ::1 at 2016-03-31 14:59:04 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.7ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.5ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  Rendered movies/index.html.erb within layouts/application (132.6ms)
+Completed 500 Internal Server Error in 214ms (ActiveRecord: 9.3ms)
+
+ActionView::Template::Error (uninitialized constant ApplicationHelper::User):
+     6:     <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
+     7:   <% end %>
+     8: 
+     9:   <% if admin_user %>
+    10:     <p>Options for movie</p>
+    11:     <%= link_to 'Edit Movie', edit_movie_path(movie) %>
+    12:     <%= link_to 'Delete Movie', movie, method: :delete, data: {confirm: 'Are you sure you want to delete this movie?'} %>
+  app/helpers/application_helper.rb:3:in `admin_user'
+  app/views/movies/index.html.erb:9:in `block in _app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+  app/views/movies/index.html.erb:1:in `_app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (48.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (41.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (88.2ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-31 14:59:21 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.7ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/index.html.erb within layouts/application (65.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (2.7ms)
+Completed 200 OK in 712ms (Views: 698.8ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 14:59:22 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 14:59:22 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 14:59:22 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 14:59:22 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 14:59:22 -0500
+
+
+Started GET "/movies/1" for ::1 at 2016-03-31 14:59:26 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/show.html.erb within layouts/application (6.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.8ms)
+Completed 200 OK in 77ms (Views: 43.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 14:59:29 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered showings/show.html.erb within layouts/application (5.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 63ms (Views: 49.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/showings/1/orders/new" for ::1 at 2016-03-31 14:59:33 -0500
+Processing by OrdersController#new as HTML
+  Parameters: {"showing_id"=>"1"}
+  [1m[35mShowing Load (0.4ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered orders/_form.html.erb (44.4ms)
+  Rendered orders/new.html.erb within layouts/application (48.7ms)
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (2.2ms)
+Completed 200 OK in 75ms (Views: 72.6ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/showings/1/orders" for ::1 at 2016-03-31 14:59:52 -0500
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"W09x1yYrW0KjmN6HwxSN5BGH3h24sOhQbvdhkCCmFzenYtWWqpzGjdpKerOW/OAm5oPZRkUEH/vmbMhwPXxl9Q==", "order"=>{"name"=>"Becky", "email"=>"becky", "credit_card"=>"1111111111111111", "card_expy_date"=>"2017-01-01"}, "commit"=>"Create Order", "showing_id"=>"1"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mMovie Load (0.4ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/_form.html.erb (4.3ms)
+  Rendered orders/new.html.erb within layouts/application (7.7ms)
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.7ms)
+Completed 200 OK in 47ms (Views: 33.2ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/showings/1/orders" for ::1 at 2016-03-31 15:00:11 -0500
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MT4oX1AJuYuoEZyIv8t/NkU92mL9H6xkYRnyK/fUdbbNE4we3L4kRNHDOLzqIxL0sjndOQCrW8/pglvL6g4HdA==", "order"=>{"name"=>"Becky", "email"=>"becky@gmail.com", "credit_card"=>"11111111111111", "card_expy_date"=>"2017-01-01"}, "commit"=>"Create Order", "showing_id"=>"1"}
+  [1m[35mShowing Load (0.8ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered orders/_form.html.erb (2.9ms)
+  Rendered orders/new.html.erb within layouts/application (5.5ms)
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 35ms (Views: 24.4ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/showings/1/orders" for ::1 at 2016-03-31 15:00:18 -0500
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dUDk1pElwYL5oCsXohzNnOXq43KrzFqBeVtXMmMU9SKJbUCXHZJcTYByjyP39KBeEu7kKVZ4rSrxwP7Sfs6H4A==", "order"=>{"name"=>"Becky", "email"=>"becky@gmail.com", "credit_card"=>"1111111111111111", "card_expy_date"=>"2017-01-01"}, "commit"=>"Create Order", "showing_id"=>"1"}
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "orders" ("name", "email", "credit_card", "card_expy_date", "showing_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Becky"], ["email", "becky@gmail.com"], ["credit_card", "1111111111111111"], ["card_expy_date", "2017-01-01"], ["showing_id", 1]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/showings/1/orders/2
+Completed 302 Found in 11ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/showings/1/orders/2" for ::1 at 2016-03-31 15:00:18 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"2"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mOrder Load (0.3ms)[0m  SELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mMovie Load (0.4ms)[0m  SELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (31.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 74ms (Views: 70.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:00:28 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.5ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (1.0ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/index.html.erb within layouts/application (12.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.0ms)
+Completed 200 OK in 35ms (Views: 31.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/login" for ::1 at 2016-03-31 15:00:31 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (20.5ms)
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.9ms)
+Completed 200 OK in 55ms (Views: 54.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:00:41 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LcLILBtoBeJT2+VesLlH4hY+ds7E5CXIsnxKbFri6JTR72xtl9+YLSoJQWrlUSog4TpxlTlQ0mM65+OMRziaVg==", "user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for nil:NilClass):
+  app/controllers/sessions_controller.rb:7:in `create'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (34.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (26.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (71.3ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:01:43 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LcLILBtoBeJT2+VesLlH4hY+ds7E5CXIsnxKbFri6JTR72xtl9+YLSoJQWrlUSog4TpxlTlQ0mM65+OMRziaVg==", "user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for nil:NilClass):
+  app/controllers/sessions_controller.rb:7:in `create'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (25.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (54.2ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:01:47 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/index.html.erb within layouts/application (8.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.0ms)
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/login" for ::1 at 2016-03-31 15:01:48 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.2ms)
+  [1m[35mAdminUser Load (0.8ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (2.5ms)
+Completed 200 OK in 25ms (Views: 23.1ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:01:54 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"J4+CYX4MPsbIGV8HNAep8+sgsgLgVo7ZnRrtpclANJzboiYg8rujCbHL+zNh78QxHCS1WR3ieXIVgURF1JpGXg==", "admin_user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."username" = $1 LIMIT 1[0m  [["username", "sashafierce"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 97ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:01:54 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.7ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (8.7ms)
+  Rendered layouts/_navi.html.erb (19.0ms)
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 1.7ms)
+
+ActionView::Template::Error (undefined local variable or method `showings_orders_path' for #<#<Class:0x007fd4f3d59e48>:0x007fd4fa47dbd8>):
+    1: <%= link_to 'Home', root_path %>
+    2: <%= link_to 'Movies', movies_path %>
+    3: <% if admin_user %>
+    4:   <%= link_to 'Orders', showings_orders_path %>
+    5:   <%= link_to 'Auditoria', auditoria_path %>
+    6:   <%= link_to 'Logout', logout_path, method: :delete, data: {confirm: 'Are you sure you want to logout?'} %>
+    7: <% else %>
+  app/views/layouts/_navi.html.erb:4:in `_app_views_layouts__navi_html_erb__3753103790783856503_70276335221280'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__2469375673039872064_70276333152660'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.1ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (43.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (25.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (55.1ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:02:27 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (7.6ms)
+  Rendered layouts/_navi.html.erb (3.6ms)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 1.2ms)
+
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"orders"} missing required keys: [:showing_id]):
+    1: <%= link_to 'Home', root_path %>
+    2: <%= link_to 'Movies', movies_path %>
+    3: <% if admin_user %>
+    4:   <%= link_to 'Orders', showing_orders_path %>
+    5:   <%= link_to 'Auditoria', auditoria_path %>
+    6:   <%= link_to 'Logout', logout_path, method: :delete, data: {confirm: 'Are you sure you want to logout?'} %>
+    7: <% else %>
+  app/views/layouts/_navi.html.erb:4:in `_app_views_layouts__navi_html_erb__3753103790783856503_70276347954840'
+  app/views/layouts/application.html.erb:11:in `_app_views_layouts_application_html_erb__2469375673039872064_70276333152660'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (47.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (37.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (74.6ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:07:16 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (2.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.9ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.5ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 32ms (Views: 27.2ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:07:16 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:07:16 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:07:16 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:07:16 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:07:16 -0500
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:07:20 -0500
+Processing by ShowingsController#index as HTML
+  Rendered showings/index.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <p>Orders</p>
+    2: 
+    3: <% @showings.each do |showing| %>
+    4:   <% showing.orders.each do |order| %>
+    5:     <%= link_to showing_order_path(showing, order) do %>
+    6:       <p>Order #<%= order.id%></p>
+  app/views/showings/index.html.erb:3:in `_app_views_showings_index_html_erb___4135175857755504631_70276355681100'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.1ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (42.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (24.1ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (51.2ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:07:20 -0500
+Processing by ShowingsController#index as HTML
+  Rendered showings/index.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <p>Orders</p>
+    2: 
+    3: <% @showings.each do |showing| %>
+    4:   <% showing.orders.each do |order| %>
+    5:     <%= link_to showing_order_path(showing, order) do %>
+    6:       <p>Order #<%= order.id%></p>
+  app/views/showings/index.html.erb:3:in `_app_views_showings_index_html_erb___4135175857755504631_70276360623460'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (37.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (24.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (51.9ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:07:50 -0500
+Processing by ShowingsController#index as HTML
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `require_login' for #<ShowingsController:0x007fd4f7fd74c8>):
+  activesupport (4.2.5) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (37.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (23.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (51.5ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:07:59 -0500
+Processing by ShowingsController#index as HTML
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT "showings".* FROM "showings"[0m
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 2]]
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 3]]
+  Rendered showings/index.html.erb within layouts/application (26.9ms)
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (10.0ms)
+Completed 200 OK in 65ms (Views: 52.5ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:07:59 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:07:59 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:07:59 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:07:59 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:07:59 -0500
+
+
+Started GET "/showings/1/orders/1" for ::1 at 2016-03-31 15:08:04 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"1"}
+  [1m[35mShowing Load (0.8ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (0.6ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (21.5ms)
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 51ms (Views: 42.7ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:08:10 -0500
+Processing by ShowingsController#index as HTML
+  [1m[36mShowing Load (1.5ms)[0m  [1mSELECT "showings".* FROM "showings"[0m
+  [1m[35mOrder Load (1.5ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 2]]
+  [1m[35mOrder Load (0.3ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 3]]
+  Rendered showings/index.html.erb within layouts/application (9.2ms)
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 31ms (Views: 26.5ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/showings/1/orders/2" for ::1 at 2016-03-31 15:08:12 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"2"}
+  [1m[35mShowing Load (1.0ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (2.0ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_navi.html.erb (0.6ms)
+Completed 200 OK in 31ms (Views: 24.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:08:14 -0500
+Processing by ShowingsController#index as HTML
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT "showings".* FROM "showings"[0m
+  [1m[35mOrder Load (0.9ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 1]]
+  [1m[36mOrder Load (1.3ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 2]]
+  [1m[35mOrder Load (1.1ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 3]]
+  Rendered showings/index.html.erb within layouts/application (9.4ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 32ms (Views: 26.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:08:17 -0500
+Processing by AuditoriaController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant AuditoriaController::Auditoria):
+  app/controllers/auditoria_controller.rb:6:in `index'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (34.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (23.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (53.7ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:08:17 -0500
+Processing by AuditoriaController#index as HTML
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant AuditoriaController::Auditoria):
+  app/controllers/auditoria_controller.rb:6:in `index'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (36.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (24.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (61.2ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:13:00 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (0.6ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (7.3ms)
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (10.8ms)
+Completed 200 OK in 48ms (Views: 37.0ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:13:01 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:13:01 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:13:01 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:13:01 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:13:01 -0500
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:13:59 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (0.4ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (3.0ms)
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.7ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:13:59 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:13:59 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:13:59 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:13:59 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:13:59 -0500
+
+
+Started GET "/auditoria/1" for ::1 at 2016-03-31 15:14:03 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 1]]
+  Rendered auditoria/show.html.erb within layouts/application (6.8ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 49ms (Views: 25.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:14:07 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.5ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (2.9ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 27ms (Views: 25.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/auditoria/2" for ::1 at 2016-03-31 15:14:08 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 2]]
+  Rendered auditoria/show.html.erb within layouts/application (1.8ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:14:10 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (1.4ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (3.1ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/auditoria/3" for ::1 at 2016-03-31 15:14:11 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mAuditorium Load (0.4ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 3]]
+  Rendered auditoria/show.html.erb within layouts/application (2.4ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 27ms (Views: 23.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:14:12 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (1.7ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 24ms (Views: 22.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:16:29 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (3.3ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:16:29 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:16:29 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:16:29 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:16:29 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:16:29 -0500
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:27:24 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.4ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (10.1ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (27.5ms)
+Completed 200 OK in 139ms (Views: 127.6ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:27:24 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:27:24 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:27:24 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:27:24 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:27:24 -0500
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:28:10 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (4.1ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 46ms (Views: 44.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:28:10 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:28:10 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:28:10 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:28:10 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:28:10 -0500
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:28:13 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `require_login' for #<AuditoriaController:0x007fd4fa1b7048>):
+  activesupport (4.2.5) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (26.1ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (57.7ms)
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:28:15 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `require_login' for #<AuditoriaController:0x007fd4f9ea48b0>):
+  activesupport (4.2.5) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (26.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.1ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (33.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (60.9ms)
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:28:28 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered auditoria/_form.html.erb (3.7ms)
+  Rendered auditoria/edit.html.erb within layouts/application (5.7ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (9.6ms)
+Completed 200 OK in 73ms (Views: 58.5ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:28:28 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:28:28 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:28:28 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:28:28 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:28:28 -0500
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:28:56 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAuditorium Load (0.4ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered auditoria/_form.html.erb (2.3ms)
+  Rendered auditoria/edit.html.erb within layouts/application (4.4ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:28:56 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:28:56 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:28:56 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:28:56 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:28:56 -0500
+
+
+Started PATCH "/auditoria/1" for ::1 at 2016-03-31 15:29:02 -0500
+Processing by AuditoriaController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FWtGsgW9q1ANGQcWwZouvtO+ToB119TaPLRhFDq5zHzpRuLziQo2n3TLoyKUckN8JLpJ24hjI3G0L8j0J2O+vg==", "auditorium"=>{"name"=>"A", "capacity"=>"0"}, "commit"=>"Update Auditorium", "id"=>"1"}
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "auditoria" SET "capacity" = $1 WHERE "auditoria"."id" = $2[0m  [["capacity", 0], ["id", 1]]
+  [1m[35m (36.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/auditoria/1
+Completed 302 Found in 68ms (ActiveRecord: 36.9ms)
+
+
+Started GET "/auditoria/1" for ::1 at 2016-03-31 15:29:02 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.5ms)[0m  SELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 1]]
+  Rendered auditoria/show.html.erb within layouts/application (8.0ms)
+  [1m[36mAdminUser Load (7.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (8.8ms)
+Completed 200 OK in 93ms (Views: 34.3ms | ActiveRecord: 10.5ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:29:08 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (16.5ms)
+  Rendered layouts/_navi.html.erb (0.5ms)
+Completed 200 OK in 41ms (Views: 37.5ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-03-31 15:29:11 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"dTzSwbMOdTB4WBhRiZDzbqlWHK1IL0Z6cJdK4W60FuWJEXaAP7no/wGKvGXceJ6sXlIb9rWbsdH4DOMBc25kJw=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:29:11 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.6ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_navi.html.erb (0.5ms)
+Completed 200 OK in 29ms (Views: 26.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:29:17 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.4ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_navi.html.erb (0.6ms)
+Completed 200 OK in 32ms (Views: 29.8ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-03-31 15:29:20 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"AAWA/hC6LmoHoFzp5G6V+4MX2f1LMOlz4s0uBNcrTpH8KCS/nA2zpX5y+N2xhvg5dBPepraEHthqVofkyvE8Uw=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:29:20 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_navi.html.erb (0.6ms)
+Completed 200 OK in 28ms (Views: 25.8ms | ActiveRecord: 1.2ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-03-31 15:29:43 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"pv5ieAxAxXXT63sxIqfMhgnxX81FFTXZnZ9s8+yRiS5a08Y5gPdYuqo53wV3T6FE/vVYlrihwnIVBMUT8Uv77A=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:29:43 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/index.html.erb within layouts/application (36.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 67ms (Views: 54.6ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/movies/1" for ::1 at 2016-03-31 15:29:47 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.5ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/show.html.erb within layouts/application (7.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 73ms (Views: 37.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:29:48 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.3ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered showings/show.html.erb within layouts/application (9.8ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 3.3ms)
+
+ActionView::Template::Error (compared with non class/module):
+    1: <h1><%= @showing.movie.title %></h1>
+    2: <p><%= @showing.date.strftime("%B %d") %> | <%= @showing.time.strftime("%I:%M %p") %></p>
+    3: 
+    4: <% if @auditorium.seats_available? %>
+    5:   <p><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></p>
+    6: <% else %>
+    7:   <p>We apologize for the inconvenience, there are no more tickets available for this showing.</p>
+  app/models/auditorium.rb:7:in `seats_available?'
+  app/views/showings/show.html.erb:4:in `_app_views_showings_show_html_erb___2128271484272436627_70276354761640'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (38.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (24.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (56.8ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:29:49 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered showings/show.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.7ms)
+
+ActionView::Template::Error (compared with non class/module):
+    1: <h1><%= @showing.movie.title %></h1>
+    2: <p><%= @showing.date.strftime("%B %d") %> | <%= @showing.time.strftime("%I:%M %p") %></p>
+    3: 
+    4: <% if @auditorium.seats_available? %>
+    5:   <p><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></p>
+    6: <% else %>
+    7:   <p>We apologize for the inconvenience, there are no more tickets available for this showing.</p>
+  app/models/auditorium.rb:7:in `seats_available?'
+  app/views/showings/show.html.erb:4:in `_app_views_showings_show_html_erb___2128271484272436627_70276349331060'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (31.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (60.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (27.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (56.8ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:30:25 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 1]]
+  [1m[35mAdminUser Load (0.5ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered showings/show.html.erb within layouts/application (25.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 93ms (Views: 45.9ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:30:25 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:30:25 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:30:25 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:30:25 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:30:25 -0500
+
+
+Started GET "/movies" for ::1 at 2016-03-31 15:30:30 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/index.html.erb within layouts/application (17.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.2ms)
+Completed 200 OK in 46ms (Views: 42.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/login" for ::1 at 2016-03-31 15:30:33 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.4ms)
+  [1m[36mAdminUser Load (0.8ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (2.6ms)
+Completed 200 OK in 74ms (Views: 72.2ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:30:38 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9mGwSRwdYlaD3+Cz/A2s5JAZ/QObg3VtXD63zHK3QtYKTBQIkKr/mfoNRIep5cEmZx36WGY3gsbUpR4sb20wFA==", "admin_user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."username" = $1 LIMIT 1  [["username", "sashafierce"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 95ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:30:38 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (8.3ms)
+  Rendered layouts/_navi.html.erb (0.5ms)
+Completed 200 OK in 29ms (Views: 26.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:30:41 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (0.3ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (4.6ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:30:46 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAuditorium Load (0.4ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered auditoria/_form.html.erb (3.2ms)
+  Rendered auditoria/edit.html.erb within layouts/application (5.2ms)
+  [1m[36mAdminUser Load (0.7ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (2.4ms)
+Completed 200 OK in 30ms (Views: 26.6ms | ActiveRecord: 1.1ms)
+
+
+Started PATCH "/auditoria/1" for ::1 at 2016-03-31 15:30:50 -0500
+Processing by AuditoriaController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mSzzKcooHiPBPz9lOOYKeFdHK49otUZXXXTVZZ6pJphlAVdoRp+D7Ljtm1FtDme6oEMs1JUBsfzV73yFg3NUWg==", "auditorium"=>{"name"=>"A", "capacity"=>"1"}, "commit"=>"Update Auditorium", "id"=>"1"}
+  [1m[35mAuditorium Load (0.6ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "auditoria" SET "capacity" = $1 WHERE "auditoria"."id" = $2  [["capacity", 1], ["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/auditoria/1
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/auditoria/1" for ::1 at 2016-03-31 15:30:50 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 1]]
+  Rendered auditoria/show.html.erb within layouts/application (2.5ms)
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 27ms (Views: 22.5ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-03-31 15:30:53 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hZR43rNJYKeLBpF3GGasAwUeyFrWlUlCDNvZdF1bkel5udyfP/79aPLUNUNNjsHB8hrPASshvumEQHCUQIHjKw=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:30:53 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/index.html.erb within layouts/application (9.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 32ms (Views: 29.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/movies/1" for ::1 at 2016-03-31 15:31:01 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (0.3ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/show.html.erb within layouts/application (4.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 31ms (Views: 25.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:31:02 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShowing Load (2.7ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAuditorium Load (1.1ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (1.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 1]]
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered showings/show.html.erb within layouts/application (7.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 37ms (Views: 27.4ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-31 15:31:04 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.4ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (1.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/index.html.erb within layouts/application (12.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 35ms (Views: 30.8ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/login" for ::1 at 2016-03-31 15:31:06 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.4ms)
+  [1m[35mAdminUser Load (2.1ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (3.7ms)
+Completed 200 OK in 27ms (Views: 23.7ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:31:14 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TNs65OLUm/OlCp/PECkWB+3nSXZHdQNmyYcyQ3XgPSqw9p6lbmMGPNzYO/tFwXvFGuNOLbrB9M1BHJujaDpP6A==", "admin_user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."username" = $1 LIMIT 1[0m  [["username", "sashafierce"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 93ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:31:14 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_navi.html.erb (0.5ms)
+Completed 200 OK in 28ms (Views: 26.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:31:19 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.4ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (2.8ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 25ms (Views: 23.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auditoria/1/edit" for ::1 at 2016-03-31 15:31:20 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAuditorium Load (0.4ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered auditoria/_form.html.erb (2.3ms)
+  Rendered auditoria/edit.html.erb within layouts/application (3.6ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 26ms (Views: 23.6ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/auditoria/1" for ::1 at 2016-03-31 15:31:25 -0500
+Processing by AuditoriaController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Ylac8c1qYnN8naiYr8H4YE4y+1Teys8Vh/CRkxLPpGqeeziwQd3/vAVPDKz6KZWiuTb8DyN+OL4PazhzDxXWqA==", "auditorium"=>{"name"=>"A", "capacity"=>"15"}, "commit"=>"Update Auditorium", "id"=>"1"}
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "auditoria" SET "capacity" = $1 WHERE "auditoria"."id" = $2[0m  [["capacity", 15], ["id", 1]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/auditoria/1
+Completed 302 Found in 6ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/auditoria/1" for ::1 at 2016-03-31 15:31:25 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAuditorium Load (0.3ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 1]]
+  Rendered auditoria/show.html.erb within layouts/application (1.8ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 23ms (Views: 20.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/movies/1" for ::1 at 2016-03-31 15:31:27 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (0.2ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered movies/show.html.erb within layouts/application (11.0ms)
+  Rendered layouts/_navi.html.erb (0.5ms)
+Completed 200 OK in 33ms (Views: 29.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/showings/1/orders/1" for ::1 at 2016-03-31 15:31:30 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"1"}
+  [1m[35mShowing Load (1.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (1.2ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAdminUser Load (1.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (1.0ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (9.6ms)
+  Rendered layouts/_navi.html.erb (0.8ms)
+Completed 200 OK in 59ms (Views: 50.5ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:31:34 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_navi.html.erb (0.7ms)
+Completed 200 OK in 34ms (Views: 31.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:31:35 -0500
+Processing by ShowingsController#index as HTML
+  [1m[35mShowing Load (0.4ms)[0m  SELECT "showings".* FROM "showings"
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 1]]
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 2]]
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 3]]
+  Rendered showings/index.html.erb within layouts/application (24.7ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.7ms)
+Completed 200 OK in 63ms (Views: 60.9ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-03-31 15:32:24 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hMNudq98D8ZQV3+8WZzHjNwo54X6wWzUzrUzZXJiebJ47so3I8uSCSmF24gMdKpOKyzg3gd1m39GLpqFb7gLcA=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:32:24 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/index.html.erb within layouts/application (35.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.2ms)
+Completed 200 OK in 70ms (Views: 57.3ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:35:22 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.5ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.5ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/index.html.erb within layouts/application (36.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (2.2ms)
+Completed 200 OK in 69ms (Views: 55.9ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:35:22 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:35:22 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:35:22 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:35:22 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:35:22 -0500
+
+
+Started GET "/movies/1" for ::1 at 2016-03-31 15:35:31 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.3ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered movies/show.html.erb within layouts/application (4.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.9ms)
+Completed 200 OK in 35ms (Views: 24.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:35:33 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.3ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 1]]
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered showings/show.html.erb within layouts/application (13.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 62ms (Views: 37.2ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/showings/1" for ::1 at 2016-03-31 15:36:04 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAuditorium Load (0.3ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 1]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered showings/show.html.erb within layouts/application (29.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 54ms (Views: 48.6ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:36:04 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:36:04 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:36:04 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:36:04 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:36:04 -0500
+
+
+Started GET "/showings/1/orders/new" for ::1 at 2016-03-31 15:36:19 -0500
+Processing by OrdersController#new as HTML
+  Parameters: {"showing_id"=>"1"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered orders/_form.html.erb (4.8ms)
+  Rendered orders/new.html.erb within layouts/application (9.0ms)
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.7ms)
+Completed 200 OK in 111ms (Views: 108.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/showings/1/orders" for ::1 at 2016-03-31 15:37:24 -0500
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JglzR5xXcJ944opWsPdS3eHTIIOeojoVGCcuHPrmdo7aJNcGEODtUAEwLmLlHz8fFtcn2GMWzb6QvIf85zwETA==", "order"=>{"name"=>"", "email"=>"carl@yahoo.com", "credit_card"=>"5555555555555555", "card_expy_date"=>"2014-01-01"}, "commit"=>"Create Order", "showing_id"=>"1"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mMovie Load (0.4ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/_form.html.erb (3.3ms)
+  Rendered orders/new.html.erb within layouts/application (6.5ms)
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (2.1ms)
+Completed 200 OK in 43ms (Views: 26.3ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/showings/1/orders" for ::1 at 2016-03-31 15:37:49 -0500
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CE1ig8vq5JHsX98CYoXCc5e9+rOiOBqA59ys1AwJcTf0YMbCR115XpWNezY3ba+xYLn96F+M7StvRwU0EdMD9Q==", "order"=>{"name"=>"Carl", "email"=>"carl@yahoo.com", "credit_card"=>"5555555555555555", "card_expy_date"=>"2016-03-31"}, "commit"=>"Create Order", "showing_id"=>"1"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "orders" ("name", "email", "credit_card", "card_expy_date", "showing_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Carl"], ["email", "carl@yahoo.com"], ["credit_card", "5555555555555555"], ["card_expy_date", "2016-03-31"], ["showing_id", 1]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/showings/1/orders/3
+Completed 302 Found in 13ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/showings/1/orders/3" for ::1 at 2016-03-31 15:37:49 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"3"}
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (0.4ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.4ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (8.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.2ms)
+Completed 200 OK in 33ms (Views: 29.0ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/showings/1/orders/3" for ::1 at 2016-03-31 15:38:37 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"3"}
+  [1m[35mShowing Load (0.9ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (3.0ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdminUser Load (0.9ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mMovie Load (1.9ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.6ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (9.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (10.4ms)
+Completed 200 OK in 57ms (Views: 46.7ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:38:37 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:38:37 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:38:37 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:38:37 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:38:37 -0500
+
+
+Started GET "/showings/1/orders/3" for ::1 at 2016-03-31 15:38:42 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"3"}
+  [1m[35mShowing Load (0.3ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdminUser Load (0.6ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (4.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 29ms (Views: 25.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:38:42 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:38:42 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:38:42 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:38:42 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:38:42 -0500
+
+
+Started GET "/showings/1/orders/3" for ::1 at 2016-03-31 15:39:24 -0500
+Processing by OrdersController#show as HTML
+  Parameters: {"showing_id"=>"1", "id"=>"3"}
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered orders/show.html.erb within layouts/application (5.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (1.1ms)
+Completed 200 OK in 27ms (Views: 24.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-31 15:39:24 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-31 15:39:24 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-31 15:39:24 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-31 15:39:24 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-31 15:39:24 -0500
+
+
+Started GET "/" for ::1 at 2016-03-31 15:39:26 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered movies/index.html.erb within layouts/application (10.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1
+  Rendered layouts/_navi.html.erb (1.2ms)
+Completed 200 OK in 32ms (Views: 29.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/login" for ::1 at 2016-03-31 15:39:55 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+  [1m[36mAdminUser Load (0.4ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_navi.html.erb (2.0ms)
+Completed 200 OK in 29ms (Views: 27.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/login" for ::1 at 2016-03-31 15:40:02 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FbiFl4SX64qIrRfdqR8IDLebFG3FQJknjymVgJGMk7nplSHWCCB2RfF/s+n892XOQJ8TNjj0bowHsjxgjFbhew==", "admin_user"=>{"username"=>"sashafierce", "password"=>"[FILTERED]"}, "commit"=>"login"}
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."username" = $1 LIMIT 1  [["username", "sashafierce"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 116ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2016-03-31 15:40:02 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mShowing Load (0.5ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 1]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_navi.html.erb (0.9ms)
+Completed 200 OK in 31ms (Views: 28.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:40:54 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (0.3ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (3.6ms)
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.6ms)
+Completed 200 OK in 30ms (Views: 28.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auditoria/new" for ::1 at 2016-03-31 15:41:18 -0500
+Processing by AuditoriaController#new as HTML
+  Rendered auditoria/_form.html.erb (2.2ms)
+  Rendered auditoria/new.html.erb within layouts/application (4.3ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 42ms (Views: 41.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/auditoria" for ::1 at 2016-03-31 15:41:25 -0500
+Processing by AuditoriaController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+NjBOrbvmuiQ1wIx2KyV5oTO3ZEQP8D16rrtOdjIvRgE9WV7OlgHJ+kFpgWNRPgkc8rayu2LN15iIUTZxRLP2g==", "auditorium"=>{"name"=>"Auditorium D", "capacity"=>"30"}, "commit"=>"Create Auditorium"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "auditoria" ("name", "capacity") VALUES ($1, $2) RETURNING "id"  [["name", "Auditorium D"], ["capacity", 30]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/auditoria/4
+Completed 302 Found in 6ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/auditoria/4" for ::1 at 2016-03-31 15:41:25 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1[0m  [["auditorium_id", 4]]
+  Rendered auditoria/show.html.erb within layouts/application (2.3ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 27ms (Views: 21.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:41:55 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[36mAuditorium Load (0.5ms)[0m  [1mSELECT "auditoria".* FROM "auditoria"[0m
+  Rendered auditoria/index.html.erb within layouts/application (3.3ms)
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 25ms (Views: 23.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/auditoria/4/edit" for ::1 at 2016-03-31 15:41:58 -0500
+Processing by AuditoriaController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered auditoria/_form.html.erb (2.3ms)
+  Rendered auditoria/edit.html.erb within layouts/application (3.6ms)
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.5ms)
+Completed 200 OK in 25ms (Views: 23.4ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/auditoria/4" for ::1 at 2016-03-31 15:42:01 -0500
+Processing by AuditoriaController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Fp1wtfXZIxgCUJSXLI4BQq7dztDqbpUCDxtC4UxNe9nqsNT0eW6+13uCMKN5ZmyAWdnJixfaYqmHgOsBUZcJGw==", "auditorium"=>{"name"=>"D", "capacity"=>"30"}, "commit"=>"Update Auditorium", "id"=>"4"}
+  [1m[36mAuditorium Load (0.2ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "auditoria" SET "name" = $1 WHERE "auditoria"."id" = $2[0m  [["name", "D"], ["id", 4]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/auditoria/4
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/auditoria/4" for ::1 at 2016-03-31 15:42:01 -0500
+Processing by AuditoriaController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAuditorium Load (0.8ms)[0m  [1mSELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" INNER JOIN "showings" ON "movies"."id" = "showings"."movie_id" WHERE "showings"."auditorium_id" = $1  [["auditorium_id", 4]]
+  Rendered auditoria/show.html.erb within layouts/application (1.2ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 25ms (Views: 20.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/auditoria" for ::1 at 2016-03-31 15:42:04 -0500
+Processing by AuditoriaController#index as HTML
+  [1m[35mAuditorium Load (0.4ms)[0m  SELECT "auditoria".* FROM "auditoria"
+  Rendered auditoria/index.html.erb within layouts/application (2.9ms)
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (1.4ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-31 15:42:21 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  [1m[35mShowing Load (0.2ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 3]]
+  Rendered movies/index.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_navi.html.erb (0.6ms)
+Completed 200 OK in 29ms (Views: 26.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/movies/2" for ::1 at 2016-03-31 15:42:32 -0500
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMovie Load (0.9ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mShowing Load (2.4ms)[0m  SELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  [1m[36mAdminUser Load (1.2ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mOrder Load (1.1ms)[0m  SELECT "orders".* FROM "orders" INNER JOIN "showings" ON "orders"."showing_id" = "showings"."id" WHERE "showings"."movie_id" = $1  [["movie_id", 2]]
+  Rendered movies/show.html.erb within layouts/application (10.9ms)
+  Rendered layouts/_navi.html.erb (0.6ms)
+Completed 200 OK in 66ms (Views: 57.9ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/showings/new.2%2F" for ::1 at 2016-03-31 15:42:36 -0500
+Processing by ShowingsController#new as 
+  Rendered showings/_form.html.erb (5.2ms)
+  Rendered showings/new.html.erb within layouts/application (32.1ms)
+  [1m[36mAdminUser Load (0.5ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (2.9ms)
+Completed 200 OK in 78ms (Views: 76.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/showings" for ::1 at 2016-03-31 15:43:31 -0500
+Processing by ShowingsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JylE+IAw5mZuNS5y/oLGvZQg5cOQe2tnbPZTFltcl+7bBOC5DId7qRfnikaraqt/YyTimG3PnMzkbfr2RoblLA==", "showing"=>{"movie"=>"Zoolander 2", "auditorium"=>"D", "date"=>"4/21/2016", "time"=>"2:00"}, "commit"=>"Create Showing"}
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."name" = $1 LIMIT 1  [["name", "D"]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."title" = $1 LIMIT 1[0m  [["title", "Zoolander 2"]]
+Unpermitted parameters: movie, auditorium
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "showings" ("time", "movie_id", "auditorium_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["time", "2000-01-01 02:00:00.000000"], ["movie_id", 2], ["auditorium_id", 4]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/showings/4
+Completed 302 Found in 340ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/showings/4" for ::1 at 2016-03-31 15:43:32 -0500
+Processing by ShowingsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT  "showings".* FROM "showings" WHERE "showings"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mAuditorium Load (0.2ms)[0m  SELECT  "auditoria".* FROM "auditoria" WHERE "auditoria"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered showings/show.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.7ms)
+
+ActionView::Template::Error (undefined method `strftime' for nil:NilClass):
+    1: <h1><%= @showing.movie.title %></h1>
+    2: <p><%= @showing.date.strftime("%B %d") %> | <%= @showing.time.strftime("%I:%M %p") %></p>
+    3: 
+    4: <% if @auditorium.seats_available? %>
+    5:   <p><%= @auditorium.num_seats_available %> tickets remaining</p>
+  app/views/showings/show.html.erb:2:in `_app_views_showings_show_html_erb___2128271484272436627_70276332464880'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (48.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (53.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (94.5ms)
+
+
+Started GET "/showings" for ::1 at 2016-03-31 15:43:46 -0500
+Processing by ShowingsController#index as HTML
+  [1m[35mShowing Load (0.4ms)[0m  SELECT "showings".* FROM "showings"
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 1]]
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 2]]
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1[0m  [["showing_id", 3]]
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."showing_id" = $1  [["showing_id", 4]]
+  Rendered showings/index.html.erb within layouts/application (7.5ms)
+  [1m[36mAdminUser Load (0.6ms)[0m  [1mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navi.html.erb (2.0ms)
+Completed 200 OK in 32ms (Views: 28.8ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-31 15:43:51 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.5ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.3ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  Rendered movies/index.html.erb within layouts/application (12.2ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.1ms)
+
+ActionView::Template::Error (undefined method `strftime' for nil:NilClass):
+    3:     <h2><%= movie.title %></h2>
+    4:   <% end %>
+    5:   <% movie.showings.each do |showing| %>
+    6:     <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
+    7:   <% end %>
+    8: 
+    9:   <% if admin_user %>
+  app/views/movies/index.html.erb:6:in `block (2 levels) in _app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+  app/views/movies/index.html.erb:5:in `block in _app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+  app/views/movies/index.html.erb:1:in `_app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.0ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (96.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (129.9ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (29.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.8ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (61.9ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-31 15:43:52 -0500
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies"
+  [1m[36mShowing Load (0.2ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 1]]
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mShowing Load (0.7ms)[0m  [1mSELECT "showings".* FROM "showings" WHERE "showings"."movie_id" = $1[0m  [["movie_id", 2]]
+  Rendered movies/index.html.erb within layouts/application (11.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.5ms)
+
+ActionView::Template::Error (undefined method `strftime' for nil:NilClass):
+    3:     <h2><%= movie.title %></h2>
+    4:   <% end %>
+    5:   <% movie.showings.each do |showing| %>
+    6:     <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
+    7:   <% end %>
+    8: 
+    9:   <% if admin_user %>
+  app/views/movies/index.html.erb:6:in `block (2 levels) in _app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+  app/views/movies/index.html.erb:5:in `block in _app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+  app/views/movies/index.html.erb:1:in `_app_views_movies_index_html_erb___2085693443467468324_70276333157740'
+
+
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.4ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (43.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (28.2ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/rebeccalehmann/.rbenv/versions/2.1.7/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (61.2ms)

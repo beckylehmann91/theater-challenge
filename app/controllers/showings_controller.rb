@@ -1,14 +1,15 @@
 class ShowingsController < ApplicationController
 
-  # before_action :require_login, except: [:index, :show]
+  # before_action :require_login, except: [:show]
 
-  # def index
-  #   @showings = Showing.all
-  # end
+  def index
+    @showings = Showing.all
+  end
 
   def show
     @showing = Showing.find(params[:id])
     @order = Order.new
+    @auditorium = @showing.auditorium
   end
 
   def new
