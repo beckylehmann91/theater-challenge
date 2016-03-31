@@ -72,9 +72,76 @@ Movie:
 - must have name
 - must have valid email
 - expy must be after the current date
+- presence validations for all other fields, all other tables
 
 ## Step 5: Set up routes
 
+- auditoria
+- movies
+- showings -> orders
+- admin:
+  - login (get/post)
+  - logout (delete)
+
+## Step 6: Create basic seeds file
+
+## Step 7: Determine which controller methods are necessary for MVP
+
+Movies:
+
+- index
+  - include showings
+- show
+  - include showings
+    (view - all, add/edit/delete - admin)
+  - include orders
+    (view/edit - admin)
+- new
+- edit
+- create
+- update
+- destroy
+
+Auditoria:
+
+(All admin-only)
+- index
+- show
+- new
+- edit
+- create
+- update
+- destroy
+
+Orders:
+
+- show
+  (view - admin, ordering user)
+- new
+  (user only)
+- create
+  (user only)
+
+Sessions:
+
+- new
+- create
+  (admin only)
+- destroy
+
+Showings:
+
+- index
+  (admin only - purpose is to display all orders for all showings)
+- show
+  (view - users,
+  view/edit - admin)
+- new
+  (admin only)
+- create
+  (admin only)
+- destroy
+  (admin only)
 
 ## Challenge Description:
 

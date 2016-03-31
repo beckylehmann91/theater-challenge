@@ -8,10 +8,10 @@
 
 <%= form_for @showing do |f| %>
   <%= f.label :movie  %>
-  <%= f.text_field :movie %>
+  <%= f.text_field :movie, value: @showing.movie.title.presence || "" %>
   <br>
   <%= f.label :auditorium  %>
-  <%= f.text_field :auditorium %>
+  <%= f.text_field :auditorium, value: @showing.auditorium.name.presence || "" %>
   <br>
   <%= f.label :date  %>
   <%= f.text_field :date, placeholder: "YYYY-MM-DD" %>
