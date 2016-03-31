@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   # belongs_to :customer, class_name: "User"
   belongs_to :showing
+  has_one :movie, through: :showing
 
   validates :name, presence: true
   validates :email, presence: true, format: { with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "not a valid email address"}

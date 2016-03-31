@@ -3,11 +3,14 @@ class MoviesController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @movies = Movies.all
+    @movies = Movie.all
+    session[:user_id] = 1
   end
 
   def show
     @movie = Movie.find(params[:id])
+    @showings = @movie.showings
+    @orders = @movie.orders
   end
 
   def new

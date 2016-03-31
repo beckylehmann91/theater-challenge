@@ -1,6 +1,6 @@
 class ShowingsController < ApplicationController
 
-  before_action :require_login, except: [:index, :show]
+  # before_action :require_login, except: [:index, :show]
 
   # def index
   #   @showings = Showing.all
@@ -8,6 +8,7 @@ class ShowingsController < ApplicationController
 
   def show
     @showing = Showing.find(params[:id])
+    @order = Order.new
   end
 
   def new
@@ -19,8 +20,13 @@ class ShowingsController < ApplicationController
   # end
 
   def create
-    @showing = Showing.create(showing_params)
+    auditorium = Auditorium.find_by(name: params[:showing][:auditorium])
+    movie = Movie.find_by(title: params[:showing][:movie])
+    @showing = Showing.create((showing_params).merge({ movie: movie, auditorium: auditorium }))
     if @showing.save
+      puts "****************"
+      p params
+      puts "****************"
       redirect_to @showing
     else
       @errors = @showing.errors.full_messages
