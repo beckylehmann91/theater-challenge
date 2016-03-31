@@ -1,16 +1,14 @@
-<%= form_for [@showing, @order] do |f| %>
-
-  <% if @errors %>
+<% if @errors %>
   <ul>
     <% @errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
-  <% end %>
+<% end %>
 
-
+<%= form_for [@showing, @order] do |f| %>
   <%= f.label :name  %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, placeholder: "First and last" %>
   <br>
   <%= f.label :email  %>
   <%= f.text_field :email %>
@@ -19,7 +17,7 @@
   <%= f.text_field :credit_card %>
   <br>
   <%= f.label :card_expy_date  %>
-  <%= f.text_field :card_expy_date %>
+  <%= f.text_field :card_expy_date, placeholder: "YYYY-MM-DD" %>
   <br>
   <%= f.submit %>
 <% end %>

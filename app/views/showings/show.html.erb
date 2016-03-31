@@ -1,11 +1,14 @@
 <h1><%= @showing.movie.title %></h1>
 <p><%= @showing.date.strftime("%B %d") %> | <%= @showing.time.strftime("%I:%M %p") %></p>
+<p>Auditorium <%= @auditorium.name %></p>
 
-<% if @auditorium.seats_available? %>
-  <p><%= @auditorium.num_seats_available %> tickets remaining</p>
-  <p><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></p>
-<% else %>
-  <p>We apologize for the inconvenience, there are no more tickets available for this showing.</p>
+<% if !admin_user %>
+  <% if @auditorium.seats_available? %>
+    <p><%= @auditorium.num_seats_available %> tickets remaining</p>
+    <p><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></p>
+  <% else %>
+    <p>We apologize for the inconvenience, there are no more tickets available for this showing.</p>
+  <% end %>
 <% end %>
 
 <% if admin_user %>

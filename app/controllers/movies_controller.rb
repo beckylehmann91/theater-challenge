@@ -1,7 +1,5 @@
 class MoviesController < ApplicationController
 
-  before_action :require_login, except: [:index, :show]
-
   def index
     @movies = Movie.all
     session[:user_id] = 1

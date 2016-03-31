@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
 
-  # before_action :require_login, except: [:new, :create]
-
   def index
     @orders = Orders.all
   end
