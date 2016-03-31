@@ -3,7 +3,7 @@ class ShowingsController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @showings = Showings.all
+    @showings = Showing.all
   end
 
   def show

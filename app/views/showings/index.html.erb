@@ -3,11 +3,13 @@
 <% end %>
 
 <% @showings.each do |showing| %>
-  <%= link_to '<%= showing.movie.title %>', , showing %>
-  <p><%= showing.date %>, <%= showing.time %></p>
+  <%= link_to(showing) do %>
+    <h2><%= showing.movie.title %></h2>
+  <% end %>
+  <p><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></p>
 
   <% if current_user %>
-    <%= link_to 'Edit', edit_showing_path(post) %>
+    <%= link_to 'Edit', edit_showing_path(showing) %>
     <%= link_to 'Destroy', showing, method: :delete, data: {confirm: 'Are you sure you want to delete this showing?'} %>
   <% end %>
 <% end %>
