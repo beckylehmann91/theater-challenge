@@ -6,9 +6,12 @@
   </ul>
 <% end %>
 
-<%= form_for @movie do |f| %>
-  <%= f.label :title  %>
-  <%= f.text_field :title %>
+<div class="row">
+<%= form_for @movie, html: { class: "col s12" } do |f| %>
+  <div class="input-field col s12">
+    <%= f.text_field :title, placeholder: "TITLE", class: "validate white-text" %>
+  </div>
   <br>
-  <%= f.submit %>
+  <%= f.submit class: "btn-large orange custom-btn" %>
 <% end %>
+</div>

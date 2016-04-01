@@ -10,7 +10,7 @@
 }
 
 a:hover {
-  color: blue;
+  color: #009688;
 }
 
 .customm {
@@ -23,6 +23,7 @@ a:hover {
 
 .custom-btn {
   margin-top: 5%;
+  display: inline-block;
 }
 
 nav ul a,
