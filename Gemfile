@@ -29,9 +29,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Chronic for parsing date/time user input
-gem 'chronic'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -48,3 +45,7 @@ group :development do
   gem 'spring'
 end
 
+# Use for deployment to Heroku
+gem 'rails_12factor', group: :production
+
+ruby "2.1.7"
