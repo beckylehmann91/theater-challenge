@@ -8,7 +8,6 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-content teal-text center light">
-          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
             <%= link_to (@movie) do %>
               <h5 class="card-title"><%= @movie.title %></h5>
             <% end %>
@@ -33,7 +32,6 @@
       <div class="col s12 m6">
         <div class="card">
           <div class="card-content teal-text center light">
-            <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
               <h5 class="card-title">Orders</h5>
                 <% if @orders.length == 0 %>
                   <p>There are currently no orders for <%= @movie.title %>.</p>

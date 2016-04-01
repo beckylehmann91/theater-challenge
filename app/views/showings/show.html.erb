@@ -3,7 +3,6 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-content teal-text center light">
-          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
             <h5 class="card-title"><%= @showing.movie.title %></h5>
               <div class="card-action"><%= @showing.date.strftime("%B %d, %Y") %> | <%= @showing.time.strftime("%I:%M %p") %></div>
               <div class="card-action">Auditorium <%= @auditorium.name %></div>
