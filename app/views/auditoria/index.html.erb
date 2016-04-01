@@ -5,19 +5,21 @@
   <% end %>
 
   <% @auditoria.each do |auditorium| %>
-    <div class="row custom-row">
-      <div class="card custom-card">
-        <div class="card-content teal-text center light">
-          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
-            <%= link_to (auditorium) do %>
-              <h5 class="card-title">Auditorium <%= auditorium.name %></h5>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content teal-text center light">
+            <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+              <%= link_to (auditorium) do %>
+                <h5 class="card-title">Auditorium <%= auditorium.name %></h5>
+              <% end %>
+              <% if admin_user %>
+              <div class="card-action">
+              <%= link_to 'Edit', edit_auditorium_path(auditorium) %>
+              <%= link_to 'Delete', auditorium, method: :delete, data: {confirm: 'Are you sure you want to delete this auditorium?'} %>
+            </div>
             <% end %>
-            <% if admin_user %>
-            <div class="card-action">
-            <%= link_to 'Edit', edit_auditorium_path(auditorium) %>
-            <%= link_to 'Delete', auditorium, method: :delete, data: {confirm: 'Are you sure you want to delete this auditorium?'} %>
           </div>
-          <% end %>
         </div>
       </div>
     </div>

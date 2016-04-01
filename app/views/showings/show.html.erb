@@ -1,22 +1,24 @@
 <body class="teal center">
-  <div class="row custom-row center">
-    <div class="card custom-card">
-      <div class="card-content teal-text center light">
-        <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
-          <h5 class="card-title"><%= @showing.movie.title %></h5>
-            <div class="card-action"><%= @showing.date.strftime("%B %d, %Y") %> | <%= @showing.time.strftime("%I:%M %p") %></div>
-            <div class="card-action">Auditorium <%= @auditorium.name %></div>
-            <% if !admin_user %>
-              <% if @auditorium.seats_available? %>
-                <div class="card-action"><%= @auditorium.num_seats_available %> tickets remaining</div>
-                <div class="card-action"><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></div>
-              <% else %>
-                <div class="card-action">We apologize for the inconvenience, there are no more tickets available for this showing.</div>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content teal-text center light">
+          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+            <h5 class="card-title"><%= @showing.movie.title %></h5>
+              <div class="card-action"><%= @showing.date.strftime("%B %d, %Y") %> | <%= @showing.time.strftime("%I:%M %p") %></div>
+              <div class="card-action">Auditorium <%= @auditorium.name %></div>
+              <% if !admin_user %>
+                <% if @auditorium.seats_available? %>
+                  <div class="card-action"><%= @auditorium.num_seats_available %> tickets remaining</div>
+                  <div class="card-action"><%= link_to 'Order Ticket', new_showing_order_path(@showing, @order) %></div>
+                <% else %>
+                  <div class="card-action">We apologize for the inconvenience, there are no more tickets available for this showing.</div>
+                <% end %>
               <% end %>
-            <% end %>
-            <% if admin_user %>
-              <div class="card-action"><%= link_to 'Edit', edit_showing_path(@showing) %></div>
-            <% end %>
+              <% if admin_user %>
+                <div class="card-action"><%= link_to 'Edit', edit_showing_path(@showing) %></div>
+              <% end %>
+        </div>
       </div>
     </div>
   </div>

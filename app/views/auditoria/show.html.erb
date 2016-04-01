@@ -1,15 +1,17 @@
 <body class="teal center">
-  <div class="row custom-row center">
-    <div class="card custom-card">
-      <div class="card-content teal-text center light">
-        <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
-          <h5 class="card-title">Auditorium <%= @auditorium.name %></h5>
-          <h6>Movies playing</h6>
-          <% @movies.each do |movie| %>
-            <%= link_to (movie) do %>
-              <div class="card-action"><%= movie.title %></div>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content teal-text center light">
+          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+            <h5 class="card-title">Auditorium <%= @auditorium.name %></h5>
+            <h6>Movies playing</h6>
+            <% @movies.each do |movie| %>
+              <%= link_to (movie) do %>
+                <div class="card-action"><%= movie.title %></div>
+              <% end %>
             <% end %>
-          <% end %>
+        </div>
       </div>
     </div>
   </div>
