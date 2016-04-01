@@ -1,28 +1,32 @@
-<body class="teal center center-align">
+<body class="teal center">
 
   <% if admin_user %>
     <%= link_to 'Add Movie', new_movie_path, class: "btn-large orange custom-btn" %>
+  <% else %>
+<h3 class="white-text">Welcome to TheBestMoviePlaceEver!</h3>
+<h5 class="orange-text">Check out our movies and showtimes, listed below</h5>
   <% end %>
 
   <% @movies.each do |movie| %>
-    <div class="row custom-row customm">
-      <div class="col s7 push-s5 m4 customm">
-        <div class="card customm">
-          <div class="card-content teal-text center light">
-            <h2 class="center brown-text"><i class="material-icons">theaters</i></h2>
-              <%= link_to (movie) do %>
-                <h5 class="card-title"><%= movie.title %></h5>
-              <% end %>
-              <% movie.showings.each do |showing| %>
-                <div class="card-action"><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></div>
-              <% end %>
-              <% if admin_user %>
-              <div class="card-action">
-              <%= link_to 'Edit', edit_movie_path(movie) %>
-              <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure you want to delete this movie?'} %>
-            </div>
+    <div class="row custom-row">
+      <div class="card custom-card">
+        <div class="card-content teal-text center light">
+          <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+            <%= link_to (movie) do %>
+              <h5 class="card-title"><%= movie.title %></h5>
             <% end %>
+            <% movie.showings.each do |showing| %>
+              <div class="card-action"><%= showing.date.strftime("%B %d") %> | <%= showing.time.strftime("%I:%M %p") %></div>
+            <% end %>
+            <% if movie.showings.empty? %>
+              <div class="card-action">There are currently no showings for this movie. We apologize for the inconvenience</div>
+            <% end %>
+            <% if admin_user %>
+            <div class="card-action">
+            <%= link_to 'Edit', edit_movie_path(movie) %>
+            <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure you want to delete this movie?'} %>
           </div>
+          <% end %>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@
 <div class="row">
 <%= form_for @movie, html: { class: "col s12" } do |f| %>
   <div class="input-field col s12">
-    <%= f.text_field :title, placeholder: "title", class: "validate white-text" %>
+    <%= f.text_field :title, autocomplete: :off, placeholder: "title", class: "validate white-text" %>
   </div>
   <br>
   <%= f.submit class: "btn-large orange custom-btn" %>

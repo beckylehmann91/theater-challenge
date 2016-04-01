@@ -8,13 +8,13 @@
 
 <div class="row">
 <%= form_for [@showing, @order], html: { class: "col s12" } do |f| %>
-  <%= f.text_field :name, placeholder: "full name", class: "validate white-text" %>
+  <%= f.text_field :name, autocomplete: :off, placeholder: "full name", class: "validate white-text" %>
   <br>
-  <%= f.text_field :email, placeholder: "email", class: "validate white-text" %>
+  <%= f.text_field :email, autocomplete: :off, placeholder: "email", class: "validate white-text" %>
   <br>
-  <%= f.text_field :credit_card, placeholder: "credit card number", class: "validate white-text" %>
+  <%= f.text_field :credit_card, autocomplete: :off, placeholder: "credit card number", class: "validate white-text" %>
   <br>
-  <%= f.text_field :card_expy_date, placeholder: "card expiration date (YYYY-MM-DD)", class: "validate white-text" %>
+  <%= f.text_field :card_expy_date, autocomplete: :off, placeholder: "card expiration date (YYYY-MM-DD)", class: "validate white-text" %>
   <br>
   <%= f.submit class: "btn-large orange custom-btn" %>
 <% end %>

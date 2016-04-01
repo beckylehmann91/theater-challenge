@@ -9,12 +9,17 @@
   height: 200px;
 }
 
+.align-left {
+  text-align: left;
+}
+
 a:hover {
   color: #009688;
 }
 
-.customm {
-  border: 5px solid black;
+.custom-card {
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .custom-row {

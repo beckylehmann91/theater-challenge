@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @admin_user = AdminUser.new
   end
 
   def create
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
       session[:admin_user_id] = @admin_user.id
       redirect_to root_path
     else
-      @errors = @admin_user.errors.full_messages
+      @error = "Username or password was not valid."
       render 'new'
     end
   end

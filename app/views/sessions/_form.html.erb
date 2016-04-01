@@ -1,0 +1,13 @@
+  <% if @error %>
+    <p class="white-text center"><%= @error %></p>
+  <% end %>
+
+  <div class="row">
+    <%= form_for @admin_user, url: '/login', html: { class: "col s12" } do |f| %>
+      <%= f.text_field :username, autocomplete: :off,  placeholder: "username", class: "validate white-text" %>
+      <br>
+      <%= f.password_field :password, autocomplete: :off, placeholder: "password", class: "validate white-text" %>
+      <br>
+      <%= f.submit :login, class: "btn-large orange custom-btn" %>
+    <% end %>
+  </div>
