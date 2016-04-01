@@ -3,6 +3,7 @@ class CustomerMailer < ApplicationMailer
 
   def confirmation_email(order)
     @order = order
-    mail(to: @order, subject: 'Your recent order - TheBestMovieTheaterEver')
+    @url = new_showing_order_path(@order.showing, @order)
+    mail(to: @order.email, subject: 'Your recent order - TheBestMovieTheaterEver')
   end
 end
