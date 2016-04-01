@@ -1,19 +1,21 @@
-<h1>Login</h1>
+<body class="teal">
+  <h5 class="white-text light">Admin Login</h5>
 
-<% if @errors %>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= form_for :admin_user, url: '/login' do |f| %>
-  <%= f.label :username  %>
-  <%= f.text_field :username %>
-  <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br>
-  <%= f.submit :login  %>
-<% end %>
+  <div class="row">
+  <%= form_for :admin_user, url: '/login', html: { class: "col s12" } do |f| %>
+    <%= f.text_field :username, placeholder: "username", class: "validate white-text" %>
+    <br>
+    <%= f.password_field :password, placeholder: "password", class: "validate white-text" %>
+    <br>
+    <%= f.submit :login, class: "btn-large orange custom-btn" %>
+  <% end %>
+  </div>
+</body>
