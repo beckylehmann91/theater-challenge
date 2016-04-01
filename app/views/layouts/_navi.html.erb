@@ -1,8 +1,7 @@
 <li><%= link_to 'Home', root_path %></li>
-<li><%= link_to 'Movies', movies_path %></li>
 <% if admin_user %>
   <li><%= link_to 'Orders', showings_path %></li>
-  <li><%= link_to 'Auditoria', auditoria_path %></li>
+  <li><%= link_to 'Auditorium List', auditoria_path %></li>
   <li><%= link_to 'Logout', logout_path, method: :delete %></li>
 <% else %>
   <li><%= link_to 'Admin', login_path %></li>

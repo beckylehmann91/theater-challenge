@@ -1,9 +1,19 @@
-<p>Orders</p>
+<body class="teal center">
+  <div class="row custom-row">
+    <div class="card custom-card">
+      <div class="card-content teal-text center light">
+        <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+          <h5 class="card-title">All Orders</h5>
+            <% @showings.each do |showing| %>
+              <% showing.orders.each do |order| %>
+                <%= link_to showing_order_path(showing, order) do %>
+                  <div class="card-action">Order #<%= order.id%></p></div>
+                <% end %>
+              <% end %>
+            <% end %>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'Back to Movies', movies_path, class: "orange-text center" %>
 
-<% @showings.each do |showing| %>
-  <% showing.orders.each do |order| %>
-    <%= link_to showing_order_path(showing, order) do %>
-      <p>Order #<%= order.id%></p>
-    <% end %>
-  <% end %>
-<% end %>
+</body>

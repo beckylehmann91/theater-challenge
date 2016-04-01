@@ -8,9 +8,9 @@
 
 <div class="row">
   <%= form_for @auditorium, html: { class: "col s12" } do |f| %>
-    <%= f.text_field :name, placeholder: "NAME", class: "validate white-text" %>
+    <%= f.text_field :name, autocomplete: :off, placeholder: "name", class: "validate white-text" %>
     <br>
-    <%= f.text_field :capacity, placeholder: "CAPACITY", class: "validate white-text" %>
+    <%= f.text_field :capacity, autocomplete: :off, placeholder: "seating capacity", class: "validate white-text" %>
     <br>
     <%= f.submit class: "btn-large orange custom-btn" %>
   <% end %>

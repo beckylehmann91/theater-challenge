@@ -1,19 +1,6 @@
-<h1>Login</h1>
+<body class="teal center">
+  <h5 class="white-text light">Admin Login</h5>
 
-<% if @errors %>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <%= render 'form' %>
 
-<%= form_for :admin_user, url: '/login' do |f| %>
-  <%= f.label :username  %>
-  <%= f.text_field :username %>
-  <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br>
-  <%= f.submit :login  %>
-<% end %>
+</body>

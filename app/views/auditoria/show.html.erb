@@ -1,18 +1,19 @@
-<body class="teal">
+<body class="teal center">
   <div class="row custom-row center">
-    <div class="col s7 push-s5 m4">
-      <div class="card">
-        <div class="card-content teal-text center light">
-          <h2 class="center brown-text"><i class="material-icons">theaters</i></h2>
-            <h5 class="card-title">Auditorium <%= @auditorium.name %></h5>
-            <h6>Movies playing</h6>
-            <% @movies.each do |movie| %>
-              <%= link_to (movie) do %>
-                <div class="card-action"><%= movie.title %></div>
-              <% end %>
+    <div class="card custom-card">
+      <div class="card-content teal-text center light">
+        <h2 class="center orange-text"><i class="material-icons">theaters</i></h2>
+          <h5 class="card-title">Auditorium <%= @auditorium.name %></h5>
+          <h6>Movies playing</h6>
+          <% @movies.each do |movie| %>
+            <%= link_to (movie) do %>
+              <div class="card-action"><%= movie.title %></div>
             <% end %>
-        </div>
+          <% end %>
       </div>
     </div>
   </div>
+
+  <%= link_to 'Back to Auditorium List', auditoria_path, class: "orange-text" %>
+
 </body>

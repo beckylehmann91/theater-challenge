@@ -7,6 +7,7 @@ class AuditoriaController < ApplicationController
   def show
     @auditorium = Auditorium.find(params[:id])
     @movies = @auditorium.movies
+
   end
 
   def new

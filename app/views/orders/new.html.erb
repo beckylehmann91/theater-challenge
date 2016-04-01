@@ -1,5 +1,7 @@
-<h1>Place an order for the <%= @showing.time.strftime("%I:%M %p") %> showing of <%= @showing.movie.title %> on <%= @showing.date.strftime("%B %d") %> </h1>
+<body class="teal center">
+  <h5 class="white-text light">Place an order for the <span class="orange-text"><%= @showing.time.strftime("%I:%M %p") %></span> showing of <span class="orange-text">'<%= @showing.movie.title %>'</span> on <span class="orange-text"><%= @showing.date.strftime("%B %d, %Y") %></span></h5>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Back', showing_path(@showing.id) %>
+  <%= link_to 'Back', showing_path(@showing.id), class: "orange-text center" %>
+</body>
