@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
     @showing = Showing.find(params[:showing_id])
     @order = @showing.orders.create(order_params)
     if @order.save
+      CustomerMailer.confirmation_email(@order).deliver_later
       redirect_to [@showing, @order]
     else
       @errors = @order.errors.full_messages
