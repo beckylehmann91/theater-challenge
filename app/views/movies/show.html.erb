@@ -33,15 +33,15 @@
           <div class="card-content teal-text center light">
             <h2 class="center brown-text"><i class="material-icons">theaters</i></h2>
               <h5 class="card-title">Orders</h5>
-              <% if @orders.length == 0 %>
-                <p>There are currently no orders for <%= @movie.title %>.</p>
-              <% else %>
-                <% @orders.each do |order| %>
-                  <%= link_to showing_order_path(order.showing, order) do %>
-                    <div class="card-action">Order #<%= order.id%></div>
+                <% if @orders.length == 0 %>
+                  <p>There are currently no orders for <%= @movie.title %>.</p>
+                <% else %>
+                  <% @orders.each do |order| %>
+                    <%= link_to showing_order_path(order.showing, order) do %>
+                      <div class="card-action">Order #<%= order.id%></div>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
           </div>
         </div>
       </div>

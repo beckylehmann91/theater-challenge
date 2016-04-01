@@ -1,5 +1,9 @@
-<h1>Edit <%= @movie.title %></h1>
+<body class="teal">
+
+<h4 class="white-text light">Edit '<%= @movie.title %>'</h4>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', movies_path %>
+<%= link_to 'Back', movies_path, class: "orange-text center" %>
+
+</body>
