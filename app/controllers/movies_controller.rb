@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @rows = @movies.each_slice(3).to_a
     session[:user_id] = 1
   end
 
