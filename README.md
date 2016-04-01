@@ -143,6 +143,30 @@ Showings:
 - destroy
   (admin only)
 
+## Create basic views to match controllers
+
+## Determine best CSS framework for styling
+
+I decided on Materialize for its compatibility with mobile and simple design.
+
+## Review requirements
+
+Once my models, controllers and views were setup to match the MVP, I reviewed the MVP requirements and traversed through the app.
+
+## Test with user
+
+Then, I had a friend use the app to determine pain points.
+
+## Deploy to Heroku
+
+## Areas for continued development
+
+- Testing: I'd love to write some RSpec and Capybara
+- Forms: Specifically, better Date/Time formats
+- Further styling
+- Continue to debug, test UX
+- Refactor to make code more DRY, create more partials for view templates
+
 ## Challenge Description:
 
 Customers should be able to come to the site and see all movies playing with their showtimes. Seating is limited for each theater so a particular showtime should only have a limited number of seats. Once a show sells out, a customer should no longer be able to buy tickets. Customers should only be able to buy one ticket at a time so don't worry about a shopping cart for this version.
