@@ -6,8 +6,13 @@
  * Made By MaterializeCSS.com
  */
 
-.custom {
-  width: 100%;
+.custom-card {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.custom-row {
+  margin-top: 5%;
 }
 
 .custom-btn {

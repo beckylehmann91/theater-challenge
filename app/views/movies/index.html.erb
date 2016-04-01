@@ -9,8 +9,8 @@
 
   <% @movies.each do |movie| %>
     <div class="row">
-      <div class="col s12 m6">
-        <div class="card">
+      <div class="col s12">
+        <div class="card custom-card">
           <div class="card-content teal-text center light">
               <%= link_to (movie) do %>
                 <h5 class="card-title"><%= movie.title %></h5>
