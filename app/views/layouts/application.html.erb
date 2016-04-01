@@ -17,19 +17,21 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
 
-<nav class="white" role="navigation">
-  <div class="nav-wrapper container">
-    <ul class="right hide-on-med-and-down">
-      <%= render '/layouts/navi' %>
-    </ul>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <ul class="right hide-on-med-and-down">
+        <%= render '/layouts/navi' %>
+      </ul>
 
-    <ul id="nav-mobile" class="side-nav">
-      <%= render '/layouts/navi' %>
-    </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <%= render '/layouts/navi' %>
+      </ul>
 
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+<container>
 <%= yield %>
+</container>
 </body>
 </html>

@@ -5,25 +5,9 @@
  *
  * Made By MaterializeCSS.com
  */
-.spacer {
-  height: 200px;
-}
 
-.align-left {
-  text-align: left;
-}
-
-a:hover {
-  color: #009688;
-}
-
-.custom-card {
-  margin-left: 30%;
-  margin-right: 30%;
-}
-
-.custom-row {
-  margin-top: 5%;
+.custom {
+  width: 100%;
 }
 
 .custom-btn {
