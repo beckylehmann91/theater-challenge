@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Confirmation of your order for '<%= @order.movie.title %>'</h1>
+    <p>Movie: <%= @order.movie.title %></p>
+    <p>Date: <%= @order.showing.date.strftime("%B %d") %></p>
+    <p>Time: <%= @order.showing.time.strftime("%I:%M %p") %></p>
+    <p>Name: <%= @order.name %></p>
+    <p>Email: <%= @order.email %></p>
+    <p>Credit card: ************ <%= @order.credit_card[-4..-1] %></p>
+    <p>Card expiration date: <%= @order.card_expy_date.strftime("%B %d, %Y") %></p>
+    <p>Enjoy the movie!</p>
+  </body>
+</html>

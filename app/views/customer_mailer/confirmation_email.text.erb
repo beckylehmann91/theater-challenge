@@ -1,0 +1,12 @@
+Confirmation of your order for '<%= @order.movie.title %>'
+===============================================
+
+Movie: <%= @order.movie.title %>
+Date: <%= @order.showing.date.strftime("%B %d") %>
+Time: <%= @order.showing.time.strftime("%I:%M %p") %>
+Name: <%= @order.name %>
+Email: <%= @order.email %>
+Credit card: ************ <%= @order.credit_card[-4..-1] %>
+Card expiration date: <%= @order.card_expy_date.strftime("%B %d, %Y") %>
+
+Enjoy the movie!
