@@ -2,11 +2,13 @@ class SessionsController < ApplicationController
 
   def new
     @admin_user = AdminUser.new
+    puts "********************"
+    p params[:admin_user]
   end
 
   def create
     @admin_user = AdminUser.find_by(username: params[:admin_user][:username])
-    if @admin_user && @admin_user.authenticate(params[:admin_user][:password])
+    if @admin_user.authenticate(params[:admin_user][:password])
       session[:admin_user_id] = @admin_user.id
       redirect_to root_path
     else

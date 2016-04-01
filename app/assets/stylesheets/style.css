@@ -6,6 +6,10 @@
  * Made By MaterializeCSS.com
  */
 
+.big-width {
+  width: 100%;
+}
+
 .custom-card {
   margin-left: 10%;
   margin-right: 10%;
